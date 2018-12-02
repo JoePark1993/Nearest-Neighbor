@@ -268,18 +268,44 @@ def Leave_One_Out_Opt(X, Y, features, curr_accuracy,best_accuracy):
 
     return accuracy
 
-(X,Y,features) = loadsparsedata("CS170_SMALLtestdata__108.txt")
+print("Welcome to Bertie Woosters Feature Selection Algorithm.")
+textfile = input("Type in the name of the file to test :  ")
+(X,Y,features) = loadsparsedata(textfile)
 featuresList = []
 for i in range(0,features):
     featuresList.append(i)
-accuracy = Leave_One_Out(X,Y,featuresList,0)
 
-print("Running nearest neighbor with all ",len(featuresList),"features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy*100,"%")
+print("Type the number of the algorithm you want to run.")
+print("     1) Forward Selection")
+print("     2) Backward Elimination")
+print("     3) Bertie's Special Algorithm")
+algorithm = input()
+print("This dataset has ", len(featuresList)," features (not including the class attribute), with ",len(Y)," instances.")
 
-accuracy = 0
-forward_search(X,Y,featuresList)
+if algorithm == '1':
+    accuracy = Leave_One_Out(X, Y, featuresList, 0)
+
+    print("Running nearest neighbor with all ", len(featuresList),
+          "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
+    accuracy = 0
+    forward_search(X, Y, featuresList)
+elif algorithm == '2':
+    accuracy = Leave_One_Out(X, Y, featuresList, 0)
+
+    print("Running nearest neighbor with all ", len(featuresList),
+          "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
+    accuracy = 0
+    back_search(X, Y, featuresList)
+elif algorithm == '3':
+    accuracy = Leave_One_Out(X, Y, featuresList, 0)
+
+    print("Running nearest neighbor with all ", len(featuresList),
+          "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
+    accuracy = 0
+    Joseph_prune_search(X, Y, featuresList)
 
 
 
-Joseph_prune_search(X,Y,featuresList)
+
+
 
