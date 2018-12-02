@@ -1,6 +1,7 @@
 import numpy as np
 import math
 import copy
+import time
 def loadsparsedata(fn):                 #parse and convert to float
     fp = open(fn, "r")
     instances = open(fn).read().split("\n")
@@ -284,25 +285,33 @@ print("This dataset has ", len(featuresList)," features (not including the class
 
 if algorithm == '1':
     accuracy = Leave_One_Out(X, Y, featuresList, 0)
-
+    start = time.time()
     print("Running nearest neighbor with all ", len(featuresList),
           "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
     accuracy = 0
     forward_search(X, Y, featuresList)
+    end = time.time()
+    print("time elapsed: ", end - start)
 elif algorithm == '2':
     accuracy = Leave_One_Out(X, Y, featuresList, 0)
 
     print("Running nearest neighbor with all ", len(featuresList),
           "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
     accuracy = 0
+    start = time.time()
     back_search(X, Y, featuresList)
+    end = time.time()
+    print("time elapsed: ", end - start)
 elif algorithm == '3':
     accuracy = Leave_One_Out(X, Y, featuresList, 0)
 
     print("Running nearest neighbor with all ", len(featuresList),
           "features, using “leaving-one-out” evaluation, I get an accuracy of", accuracy * 100, "%")
     accuracy = 0
+    start = time.time()
     Joseph_prune_search(X, Y, featuresList)
+    end = time.time()
+    print("time elapsed: ", end - start)
 
 
 
